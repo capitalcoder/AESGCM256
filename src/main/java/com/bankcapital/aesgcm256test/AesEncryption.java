@@ -23,6 +23,8 @@ public class AesEncryption {
     private byte[] iv;
     private byte[] key;
 
+    private String sR = "";
+
     @PostMapping("/encode")
     public String encode(@RequestBody Payload payload) {
         convertToByte(payload.getKey(), payload.getIv());
@@ -41,7 +43,7 @@ public class AesEncryption {
     }
 
     private String decryptRequest(String plainText, byte[] key, byte[] iv) {
-        String sR = "";
+
         logger.info("Text: " + plainText);
         try {
             byte[] encryptedBytes = Base64.decode(plainText);
@@ -63,7 +65,6 @@ public class AesEncryption {
     }
 
     private String encryptRequest(String plainText, byte[] key, byte[] iv) {
-        String sR = "";
         try {
             byte[] plainBytes = plainText.getBytes(StandardCharsets.UTF_8);
 
