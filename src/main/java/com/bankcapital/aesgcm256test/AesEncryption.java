@@ -55,9 +55,9 @@ public class AesEncryption {
             cipher.doFinal(plainBytes, retLen);
 
             sR = new String(plainBytes, StandardCharsets.UTF_8);
-            return sR;
         } catch (IllegalArgumentException | IllegalStateException | DataLengthException | InvalidCipherTextException ex) {
             System.out.println(ex.getMessage());
+            sR = ex.getMessage();
         }
         return sR;
     }
