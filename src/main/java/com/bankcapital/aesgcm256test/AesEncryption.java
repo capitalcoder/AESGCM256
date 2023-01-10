@@ -23,7 +23,7 @@ public class AesEncryption {
     private byte[] iv;
     private byte[] key;
 
-    private String sR = "";
+    private String sR;
 
     @PostMapping("/encode")
     public String encode(@RequestBody Payload payload) {
@@ -43,7 +43,7 @@ public class AesEncryption {
     }
 
     private String decryptRequest(String plainText, byte[] key, byte[] iv) {
-
+        sR = "";
         logger.info("Text: " + plainText);
         try {
             byte[] encryptedBytes = Base64.decode(plainText);
@@ -65,6 +65,7 @@ public class AesEncryption {
     }
 
     private String encryptRequest(String plainText, byte[] key, byte[] iv) {
+        sR = "";
         try {
             byte[] plainBytes = plainText.getBytes(StandardCharsets.UTF_8);
 
@@ -79,6 +80,7 @@ public class AesEncryption {
             sR = Base64.toBase64String(encryptedBytes);
         } catch (IllegalArgumentException | IllegalStateException | DataLengthException | InvalidCipherTextException ex) {
             System.out.println(ex.getMessage());
+            sR = ex.getMessage();
         }
         return sR;
     }

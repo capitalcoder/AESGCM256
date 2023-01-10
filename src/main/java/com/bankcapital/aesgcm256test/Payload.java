@@ -6,6 +6,8 @@ public class Payload {
 
     String key;
 
+    public Payload() {}
+
     public Payload(String message, String key, String iv) {}
 
     public String getMessage() {
